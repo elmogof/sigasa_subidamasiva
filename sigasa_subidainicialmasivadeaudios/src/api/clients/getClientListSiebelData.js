@@ -31,14 +31,16 @@ const getClientListSiebelData = async ({ phoneNumberList }) => {
 
     // Procesar cada respuesta
     responses.forEach(response => {
-      if (response.data && response.data.objectList) {
-        clientList = clientList.concat(response.data.objectList);
+      const clients = response.data;
+      if (clients.data && clients.data.objectList) {
+        clientList = clientList.concat(clients.data.objectList);
       }
     });
   } catch (error) {
     console.log("Error en alguna de las solicitudes:", error.message);
   }
 
+  console.log("Clientes encontrados:", clientList.length);
   return clientList;
 };
 
